@@ -22,6 +22,14 @@ fi
 echo "Building $1 for $2"
 mkdir -p $GITHUB_WORKSPACE/build/${SubDirectoryLocation:-""}
 cd "$GITHUB_WORKSPACE/$5"
+
+# if addons/godot-jolt exists, preload the extension by creating a .godot/extension_list.cfg
+# and add "res://addons/godot-jolt/godot-jolt.gdextension"
+if [ -d "addons/godot-jolt" ]; then
+    mkdir -p .godot
+    echo "res://addons/godot-jolt/godot-jolt.gdextension" > .godot/extension_list.cfg
+fi
+
 godot --headless --${mode} "$2" $GITHUB_WORKSPACE/build/${SubDirectoryLocation:-""}$1 --verbose --quit-after 100
 echo "Build Done"
 
