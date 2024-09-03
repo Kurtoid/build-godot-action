@@ -30,7 +30,7 @@ if [ -d "addons/godot-jolt" ]; then
     echo "res://addons/godot-jolt/godot-jolt.gdextension" > .godot/extension_list.cfg
 fi
 
-godot --headless --${mode} "$2" $GITHUB_WORKSPACE/build/${SubDirectoryLocation:-""}$1 --verbose --quit-after 100
+godot --headless --${mode} "$2" $GITHUB_WORKSPACE/build/${SubDirectoryLocation:-""}$1 --verbos
 echo "Build Done"
 
 echo ::set-output name=build::build/${SubDirectoryLocation:-""}
